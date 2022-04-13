@@ -1,0 +1,33 @@
+mac addresses:
+30:c6:f7:03:68:38
+40:91:51:9a:a5:dc
+
+
+libraries:
+painlessMesh : https://gitlab.com/painlessMesh/painlessMesh
+  ArduinoJson
+  TaskScheduler
+  AsyncTCP (ESP32)
+MFRC522 // https://github.com/miguelbalboa/rfid
+Dictionary // https://github.com/arkhipenko/Dictionary
+
+mqtt server username: allan; password: pi
+raspberry pi user: allan2; password: pi
+
+mqtt stuff: https://diyi0t.com/microcontroller-to-raspberry-pi-wifi-mqtt-communication/
+lamp: https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/
+
+tasks:
+https://github.com/arkhipenko/TaskScheduler/wiki/Full-Document
+
+restart mosquitto broker on rpi: sudo systemctl restart mosquitto 
+mqtt rpi ip (at home): 10.20.168.8, using port 1883
+  to find, use sudo ifconfig
+  systemctl status mosquitto.service
+  sudo mosquitto -c /etc/mosquitto/mosquitto.conf
+  sudo service mosquitto stop
+  https://github.com/eclipse/paho.mqtt.python
+testing mqtt:
+mosquitto_pub -d -h "10.20.126.8" -t "uuidReply" -m "Your message"
+
+router at home, 25-103, has channel 149
