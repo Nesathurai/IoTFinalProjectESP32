@@ -59,8 +59,8 @@ char subTopic[100];
 char bleTopic[100];
 
 int bleCount = 0;
-int bleDelay = 0;
-const int bleMaxDevices = 4;
+int bleDelay = -100;
+const int bleMaxDevices = 7;
 char bleData[bleMaxDevices * 27];
 const int scanTime = 2; // In seconds
 
@@ -85,7 +85,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks
 
 void BLE_aggregate()
 {
-  if (bleDelay >= 50)
+  if (bleDelay >= 25)
   {
     BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
     Serial.println("BLE scan done!");
@@ -99,7 +99,7 @@ void BLE_aggregate()
     bleDelay = 0;
   }
   bleDelay++;
-  delay(50);
+  delay(25);
 };
 
 void reconnect()
@@ -278,6 +278,7 @@ void setup()
   pBLEScan->setWindow(99); // less or equal setInterval value
 
   strcpy(bleData, "");
+  delay(10000);
 };
 
 void loop()
